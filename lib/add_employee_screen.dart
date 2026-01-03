@@ -47,7 +47,8 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
     _numberController.dispose();
     _dateOfBirthController.dispose();
  
-    _employeeChangeNotifier.dispose();
+   // _employeeChangeNotifier.dispose();   // ChangeNotifierProvider use kar rahe ho     ❌ manually dispose mat karo
+    _employeeChangeNotifier.removeListener(listenAddProvider);    //addListener lagaya     ✅ removeListener zaroor
 
     super.dispose();
   }

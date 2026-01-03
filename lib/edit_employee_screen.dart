@@ -29,7 +29,6 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
 
   late EmployeeChangeNotifier _employeeChangeNotifier;
 
-
   @override
   void initState() {
     super.initState();
@@ -52,7 +51,10 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
     _numberController.dispose();
     _dateOfBirthController.dispose();
 
-    // _employeeChangeNotifier.dispose();
+    // _employeeChangeNotifier.dispose();   // ChangeNotifierProvider use kar rahe ho     ❌ manually dispose mat karo
+    _employeeChangeNotifier.removeListener(
+      providerListener,
+    ); //addListener lagaya     ✅ removeListener zaroor
 
     super.dispose();
   }
