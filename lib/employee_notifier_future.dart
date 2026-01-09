@@ -25,7 +25,7 @@ class _EmployeeNotifierFuturescreenState
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('BuildContext');
+    debugPrint('BuildContext😊😊😊😊😊😊😊😊😊😊😊😊');
     final isLoading = context.select<EmployeeChangeNotifier, bool>(
       (notifier) => notifier.isLoading,
     );

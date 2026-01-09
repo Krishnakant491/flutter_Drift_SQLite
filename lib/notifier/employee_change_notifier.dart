@@ -34,6 +34,7 @@ class EmployeeChangeNotifier extends ChangeNotifier {
 
   void getEmployeeFuture() {
     _isLoading = true;
+    notifyListeners();
     _appDb
         ?.getEmployees()
         .then((value) {
@@ -76,7 +77,10 @@ class EmployeeChangeNotifier extends ChangeNotifier {
         ?.insertEmployee(entity)
         .then((value) {
           _isAdded = (value != 0) ? true : false;
-          notifyListeners();
+          if (_isAdded) {
+            getEmployeeFuture();
+            notifyListeners();
+          }
         })
         .onError((error, stackTrace) {
           _error = error.toString();
@@ -89,7 +93,10 @@ class EmployeeChangeNotifier extends ChangeNotifier {
         ?.updateEmployee(entity)
         .then((value) {
           _isUpdated = value;
-          notifyListeners();
+          if (_isUpdated) {
+            getEmployeeFuture();
+            notifyListeners();
+          }
         })
         .onError((error, stackTrace) {
           _error = error.toString();
@@ -102,7 +109,10 @@ class EmployeeChangeNotifier extends ChangeNotifier {
         ?.deleteEmployee(id)
         .then((value) {
           _isDeleted = (value == 1) ? true : false;
-          notifyListeners();
+          if (_isDeleted) {
+            getEmployeeFuture();
+            notifyListeners();
+          }
         })
         .onError((error, stackTrace) {
           _error = error.toString();
